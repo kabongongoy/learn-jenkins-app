@@ -55,6 +55,7 @@ pipeline {
                 '''
             }
         }
+    }    
 
     post {
         always {
@@ -62,3 +63,4 @@ pipeline {
         }
     }
 }
+
