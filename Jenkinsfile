@@ -36,5 +36,10 @@ pipeline {
             }
         }
     }
+    post {
+        alwways {
+            junit 'test-results/junit.xml'
+        }
+    }
 }
 
