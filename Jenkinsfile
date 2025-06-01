@@ -7,6 +7,7 @@ pipeline {
                     image 'amazon/aws-cli'
                     args "--entrypoint=''"
                 }
+            }
             environment {
                 AWS_S3_BUCKET = 'my-hfbucket-01'    
             }
