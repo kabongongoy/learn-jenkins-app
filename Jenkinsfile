@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
+        AWS_DEFAULT_REGION = 'us-east-1'
     stages {
         stage ('AWS') {
             agent {
@@ -10,10 +13,13 @@ pipeline {
                 }
             }
             steps {
+                withCredentials([usernamePassword(credentialsId: 'jenkins-aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                 sh '''
                     aws --version
                     aws s3 ls
                 '''
+                }
+
             }
         }
         stage('Clean Workspace') {
