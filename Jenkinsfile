@@ -15,11 +15,16 @@ pipeline {
                 '''
             }
         }
+        stage('Clean Workspace') {
+            steps {
+                deleteDir() // removes all files, including node_modules
+            }
+        }
         stage('Build') {
             agent {
                 docker {
                     image 'node:18-alpine'
-                    args '-u node'
+                    args '-u 1000:1000'
                     reuseNode true
                 }
             }
