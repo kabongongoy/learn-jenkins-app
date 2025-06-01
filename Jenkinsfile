@@ -15,11 +15,13 @@ pipeline {
                 '''
             }
         }
-        // stage('Clean Workspace') {
-        //     steps {
-        //         deleteDir() // removes all files, including node_modules
-        //     }
-        // }
+        stage('Clean Workspace') {
+            steps {
+                always {
+                    cleanWs()
+         }
+            }
+        }
         stage('Build') {
             agent {
                 docker {
