@@ -13,6 +13,8 @@ pipeline {
                 sh '''
                     aws --version
                     aws s3 ls
+                    echo "hello s3" > index.html
+                    aws s3 cp index.html s3://my-hfbucket-01/index.html
                 '''
                      
                 }
